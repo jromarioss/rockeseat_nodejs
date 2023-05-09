@@ -63,6 +63,7 @@ model Pet {
   size        Size
   habitation  Habitation
   energy      Energy
+  city        String
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
 

@@ -1,5 +1,5 @@
-import { Prisma, Organization } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
+import { Prisma, Organization } from '@prisma/client'
 
 import { OrganizationsRepository } from '../organizations-repository'
 
@@ -28,6 +28,16 @@ export class InMemoryOrganizationRepository implements OrganizationsRepository {
     return organization
   }
 
+  async findById(id: string) {
+    const organization = this.items.find(item => item.id === id)
+
+    if(!organization) {
+      return null
+    }
+
+    return organization
+  }
+
   async findOrganizationByEmail(email: string) {
     const organization = this.items.find(item => item.email === email)
 
@@ -36,5 +46,11 @@ export class InMemoryOrganizationRepository implements OrganizationsRepository {
     }
 
     return organization
+  }
+  
+  async searchMany(query: string) {
+    const organizations = this.items.filter(item => item.city.includes(query))
+
+    return organizations
   }
 }

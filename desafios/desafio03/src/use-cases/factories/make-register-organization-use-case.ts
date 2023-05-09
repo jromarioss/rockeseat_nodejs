@@ -1,4 +1,4 @@
-import { RegisterOrganizationUseCase } from '../register-organization'
+import { RegisterOrganizationUseCase } from '../organizations/register-organization'
 import { PrismaOrganizationsRepository } from '@/repositories/prisma/prisma-organizations-repository'
 
 export function makeRegisterOrganizationUseCase() {

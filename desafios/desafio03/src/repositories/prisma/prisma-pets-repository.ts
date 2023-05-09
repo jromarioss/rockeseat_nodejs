@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 import { Prisma } from '@prisma/client'
-import { PetsRepository } from '../pets-repository'
+import { PetsRepository, SearchPetsQuery } from '../pets-repository'
 
 export class PrismaPetsRepository implements PetsRepository {
   async create(data: Prisma.PetUncheckedCreateInput) {
@@ -15,5 +15,21 @@ export class PrismaPetsRepository implements PetsRepository {
     })
 
     return pet
+  }
+
+  async searchPets({ city, age, energy, habitation, size }: SearchPetsQuery, page: number) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        city,
+        age,
+        energy,
+        habitation,
+        size
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+    
+    return pets
   }
 }

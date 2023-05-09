@@ -18,14 +18,32 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   })
 
   const {
-    name, owner_name, email, password, phone, zip_code, state, city, address, address_number
+    name,
+    owner_name,
+    email,
+    password,
+    phone,
+    zip_code,
+    state,
+    city,
+    address,
+    address_number
   } = registerOrganizationBodySchema.parse(request.body)
 
   const registerOrganizationUseCase = makeRegisterOrganizationUseCase()
 
-  await registerOrganizationUseCase.execute({
-    name, owner_name, email, password_hash: password, phone, zip_code, state, city, address, address_number
+  const { organization } = await registerOrganizationUseCase.execute({
+    name,
+    owner_name,
+    email,
+    password_hash: password,
+    phone,
+    zip_code,
+    state,
+    city, 
+    address,
+    address_number
   })
 
-  return reply.status(201).send({ message: 'Organization create successfully!'})
+  return reply.status(201).send({ organization })
 }
