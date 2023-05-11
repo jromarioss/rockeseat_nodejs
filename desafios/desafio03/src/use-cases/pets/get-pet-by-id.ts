@@ -3,7 +3,7 @@ import { PetsRepository } from '@/repositories/pets-repository'
 import { ResourceNotFoundErro } from '../errors/resource-not-found-error'
 
 interface GetPetByIdUseCaseRequest {
-  petId: string
+  id: string
 }
 
 interface GetPetByIdUseCaseResonse {
@@ -13,8 +13,8 @@ interface GetPetByIdUseCaseResonse {
 export class GetPetByIdUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
-  async execute({ petId }: GetPetByIdUseCaseRequest): Promise<GetPetByIdUseCaseResonse> {
-    const pet = await this.petsRepository.getPetById(petId)
+  async execute({ id }: GetPetByIdUseCaseRequest): Promise<GetPetByIdUseCaseResonse> {
+    const pet = await this.petsRepository.getPetById(id)
 
     if(!pet) {
       throw new ResourceNotFoundErro

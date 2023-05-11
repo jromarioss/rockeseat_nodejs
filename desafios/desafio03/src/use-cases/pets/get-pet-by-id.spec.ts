@@ -44,7 +44,7 @@ describe('Get Pet By Id', () => {
       city: 'Teste city'
     })
 
-    const { pet } = await sut.execute({ petId: createPet.id })
+    const { pet } = await sut.execute({ id: createPet.id })
 
     expect(pet.id).toEqual(expect.any(String))
     expect(pet.name).toEqual('Dog test')
@@ -52,7 +52,7 @@ describe('Get Pet By Id', () => {
 
   it('should not be able to get a pet with wrong id', async () => {
     await expect(() => sut.execute({
-        petId: 'no-existing-id'
+        id: 'no-existing-id'
       })
     ).rejects.toBeInstanceOf(ResourceNotFoundErro)
   })

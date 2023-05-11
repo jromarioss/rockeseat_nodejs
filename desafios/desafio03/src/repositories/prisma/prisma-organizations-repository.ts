@@ -4,9 +4,7 @@ import { OrganizationsRepository } from '../organizations-repository'
 
 export class PrismaOrganizationsRepository implements OrganizationsRepository {
   async create(data: Prisma.OrganizationCreateInput) {
-    const organization = await prisma.organization.create({
-      data
-    })
+    const organization = await prisma.organization.create({ data })
 
     return organization
   }

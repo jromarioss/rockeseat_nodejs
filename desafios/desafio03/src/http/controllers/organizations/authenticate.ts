@@ -56,5 +56,4 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
 
     throw error
   }
-
 }

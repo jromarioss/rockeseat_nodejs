@@ -4,7 +4,7 @@ import { Organization } from '@prisma/client'
 import { OrganizationsRepository } from '@/repositories/organizations-repository'
 import { OrganizationEmailExistsError } from '../errors/organization-email-exists-error'
 
-interface RegisterOrganizationRequest {
+interface RegisterOrganizationUseCaseRequest {
   name: string
   owner_name: string
   email: string
@@ -17,7 +17,7 @@ interface RegisterOrganizationRequest {
   address_number: number
 }
 
-interface RegisterOrganizationResponse {
+interface RegisterOrganizationUseCaseResponse {
   organization: Organization
 }
 
@@ -26,7 +26,7 @@ export class RegisterOrganizationUseCase {
 
   async execute({
     name, owner_name, email, password_hash, phone, city, state, zip_code, address, address_number
-  }: RegisterOrganizationRequest): Promise<RegisterOrganizationResponse> {
+  }: RegisterOrganizationUseCaseRequest): Promise<RegisterOrganizationUseCaseResponse> {
     const emailAlreadyExists = await this.organizationRepository.findOrganizationByEmail(email)
 
     if(emailAlreadyExists) {
