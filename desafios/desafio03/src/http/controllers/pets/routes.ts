@@ -7,7 +7,7 @@ import { verifyJWT } from '@/http/middlewares/verify-jwt'
 
 export async function petsRoutes(app: FastifyInstance) {
   app.get('/pet/:id', getPet)
-  app.post('/pet/:city', fetchPets)
+  app.get('/pets', fetchPets)
 
   app.post('/create', { onRequest: [verifyJWT] }, create)
 }

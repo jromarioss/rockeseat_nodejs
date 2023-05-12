@@ -44,4 +44,17 @@ export async function createPets(app: FastifyInstance) {
       energy: 'VERY_MUCH',
       city: 'Cerquilho',
     })
+
+  await request(app.server)
+  .post('/create')
+  .set('Authorization', `Bearer ${token}`)
+  .send({
+    name: 'Doguinho 04',
+    description: 'Cachorrinho fofo 04',
+    age: 'ADULT',
+    size: 'BIG',
+    habitation: 'MEDIUM',
+    energy: 'MEDIUM',
+    city: 'Cerquilho',
+  })
 }

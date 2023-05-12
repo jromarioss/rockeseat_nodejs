@@ -26,6 +26,7 @@ describe('Create Pet (e2e)', () => {
         size: 'MEDIUM',
         habitation: 'MEDIUM',
         energy: 'MEDIUM',
+        city: 'Cerquilho'
       })
 
     expect(response.statusCode).toEqual(201)

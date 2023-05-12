@@ -5,23 +5,24 @@ import { makeCreatePetsUseCase } from '@/use-cases/factories/make-create-pets-us
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const createPetBodySchema = z.object({
-    name: z.string(), 
-    description: z.string(), 
-    age: z.enum(['CUB', 'YOUNG', 'ADULT']), 
-    size: z.enum(['SMALL', 'MEDIUM', 'BIG']), 
-    habitation: z.enum(['SMALL', 'MEDIUM', 'BIG']), 
-    energy: z.enum(['LITTLE', 'MEDIUM', 'VERY', 'VERY_MUCH']), 
+    name: z.string(),
+    city: z.string(),
+    description: z.string(),
+    age: z.enum(['CUB', 'YOUNG', 'ADULT']),
+    size: z.enum(['SMALL', 'MEDIUM', 'BIG']),
+    habitation: z.enum(['SMALL', 'MEDIUM', 'BIG']),
+    energy: z.enum(['LITTLE', 'MEDIUM', 'VERY', 'VERY_MUCH']),
   })
 
   const {
-    name, description, age, size, habitation, energy
+    name, city, description, age, size, habitation, energy
   } = createPetBodySchema.parse(request.body)
 
   const createPetsUseCase = makeCreatePetsUseCase()
 
   const { pet } = await createPetsUseCase.execute({
     organization_id: request.user.sub,
-    city: request.user.sub,
+    city,
     name,
     description,
     age,

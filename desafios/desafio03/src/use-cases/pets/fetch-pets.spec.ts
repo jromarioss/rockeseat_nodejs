@@ -77,8 +77,8 @@ describe('Fetch Pets', () => {
   })
 
   it('should be able to fetch pets from city', async () => {
-    const { pets } = await sut.execute({ 
-      city: 'Teste city 2', 
+    const { pets } = await sut.execute({
+      queryParams: { city: 'Teste city 2'},
       page: 1
     })
 
@@ -86,9 +86,11 @@ describe('Fetch Pets', () => {
   })
 
   it('should be able to fetch pets by age', async () => {
-    const { pets } = await sut.execute({ 
-      city: 'Teste city',
-      age: 'YOUNG',
+    const { pets } = await sut.execute({
+      queryParams: {
+        city: 'Teste city',
+        age: 'YOUNG',
+      },
       page: 1
     })
 
@@ -96,9 +98,11 @@ describe('Fetch Pets', () => {
   })
 
   it('should be able to fetch pets by energy', async () => {
-    const { pets } = await sut.execute({ 
-      city: 'Teste city',
-      energy: 'MEDIUM',
+    const { pets } = await sut.execute({
+      queryParams: {
+        city: 'Teste city',
+        energy: 'MEDIUM',
+      },
       page: 1
     })
 
@@ -106,9 +110,11 @@ describe('Fetch Pets', () => {
   })
 
   it('should be able to fetch pets by habitation', async () => {
-    const { pets } = await sut.execute({ 
-      city: 'Teste city',
-      habitation: 'MEDIUM',
+    const { pets } = await sut.execute({
+      queryParams: {
+        city: 'Teste city',
+        habitation: 'MEDIUM',
+      },
       page: 1
     })
 
@@ -116,9 +122,11 @@ describe('Fetch Pets', () => {
   })
 
   it('should be able to fetch pets by size', async () => {
-    const { pets } = await sut.execute({ 
-      city: 'Teste city',
-      size: 'SMALL',
+    const { pets } = await sut.execute({
+      queryParams: {
+        city: 'Teste city',
+        size: 'SMALL',
+      },
       page: 1
     })
 

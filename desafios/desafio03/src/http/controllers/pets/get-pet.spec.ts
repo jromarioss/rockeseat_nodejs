@@ -26,6 +26,7 @@ describe('Get Pet (e2e)', () => {
         size: 'MEDIUM',
         habitation: 'MEDIUM',
         energy: 'MEDIUM',
+        city: 'Cerquilho'
       })
 
     const { pet } = createPetResponse.body
