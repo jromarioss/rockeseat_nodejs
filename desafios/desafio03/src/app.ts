@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import { ZodError } from 'zod'
+import multer from 'fastify-multer'
 
 import { fastifyJwt } from '@fastify/jwt'
 import fastifyCookie from '@fastify/cookie'
@@ -22,6 +23,8 @@ app.register(fastifyJwt, {
 })
 
 app.register(fastifyCookie)
+
+app.register(multer.contentParser)
 
 app.register(organizationsRoutes)
 app.register(petsRoutes)
