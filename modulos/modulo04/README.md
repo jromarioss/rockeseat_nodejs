@@ -21,3 +21,4 @@ Design dirigido à domínio
 - Subdomínio (Bounded Contexts)
 - Entidades
 - Caso de uso 
+Parou 88

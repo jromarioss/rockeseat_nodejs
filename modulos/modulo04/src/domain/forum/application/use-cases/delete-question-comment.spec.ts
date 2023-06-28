@@ -1,3 +1,4 @@
+import { NotAllowedError } from './error/not-allowed-error'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { DeleteQuestionCommentUseCase } from './delete-question-comment'
 import { makeQuestionComment } from 'test/factories/make-question-comment'
@@ -32,11 +33,12 @@ describe('Delete Question Comment', () => {
 
     await inMemoryQuestionsCommentRepository.create(questionComment)
 
-    expect(() => {
-      return sut.execute({
-        questionCommentId: questionComment.id.toString(),
-        authorId: 'author-2'
-      })
-    }).rejects.toBeInstanceOf(Error)
+    const result = await sut.execute({
+      questionCommentId: questionComment.id.toString(),
+      authorId: 'author-2'
+    })
+
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(NotAllowedError)
   })
 })
